@@ -34,6 +34,16 @@ $(document).on("keypress",function(event){
     }
 })
 
+//detect button press & start the game
+$("button").on("click",function(){
+    if(gamestarted==false ){
+        
+        nextSequence(); 
+        gamestarted=true;
+        
+    }
+})
+
 //level 
 var level = 0;
 
