@@ -26,8 +26,7 @@ var delay=100; //0.1 second
 
 //detect keyboard press & start the game
 $(document).on("keypress",function(event){
-    if(gamestarted==false && event.key=="a" ){
-        
+    if(gamestarted==false){  
         nextSequence(); 
         gamestarted=true;
         
@@ -37,7 +36,6 @@ $(document).on("keypress",function(event){
 //detect button press & start the game
 $("button").on("click",function(){
     if(gamestarted==false ){
-        
         nextSequence(); 
         gamestarted=true;
         
@@ -129,8 +127,24 @@ if(gamePattern[currentLevel]==userClickedPattern[currentLevel]){
     }
 }
 else {
-    $("#level-title").text("Game Over"); 
-    
+    $("#level-title").text("Game Over, Press Any Key to restart"); 
     wrongAudio.play();
+    $("body").addClass("game-over");
+    $("button").text("Restart");
+    setTimeout(
+        function(){
+        $("body").removeClass("game-over"); 
+        },200
+    );
+    startOver();
 }
+}
+
+//Restart the Game
+function startOver(){
+    level=0;
+    gamePattern=[];
+    gamestarted=false;
+    userClickedPattern=[];
+   
 }
